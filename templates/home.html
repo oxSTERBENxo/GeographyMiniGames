@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8">
+  <title>Избери игра</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <style>
+        body {
+      background-image: url("{% static 'img/background.png' %}");
+      background-repeat: repeat-y;
+      background-size: 100% auto;
+      background-position: top center;
+      background-attachment: scroll;
+
+      font-family: 'Comic Sans MS', cursive;
+      color: #333;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+
+
+    h1 {
+      font-size: 48px;
+      color: #0077cc;
+      margin-bottom: 40px;
+    }
+
+    .game-button {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px 40px;
+      font-size: 24px;
+      border-radius: 30px;
+      border: none;
+      background-color: #ffcc70;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .game-button:hover {
+      background-color: #ffaa33;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Избери географска игра</h1>
+
+  <a href="{% url 'mapgame' %}" class="game-button">🗺️ Препознај ја државата по форма</a>
+  <a href="{% url 'flaggame' %}" class="game-button">🚩 Препознај ја државата по знаме</a>
+</body>
+</html>
