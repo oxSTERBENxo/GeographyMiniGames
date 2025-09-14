@@ -39,13 +39,13 @@ function loadRandomCountry() {
   if (MODE === 'map') {
     container.innerHTML = `
       <div class="image-wrapper">
-        <img src="/static/data/${correct.code}.svg" class="main-image" alt="Map of ${correct.name}">
+        <img src="/static/data/${correct.code}.svg" class="main-image" alt="meow">
       </div>
     `;
   } else if (MODE === 'flag') {
     container.innerHTML = `
       <div class="image-wrapper">
-        <img src="/static/flags/${correct.code}.svg" class="main-image" alt="Flag of ${correct.name}">
+        <img src="/static/flags/${correct.code}.svg" class="main-image" alt="mjau">
       </div>
     `;
   }
