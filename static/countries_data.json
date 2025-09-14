@@ -192,12 +192,6 @@
     "flag": "static/flags/bt.svg"
   },
   {
-    "code": "bv",
-    "name": "Остров Буве",
-    "svg": "static/data/bv.svg",
-    "flag": "static/flags/bv.svg"
-  },
-  {
     "code": "bw",
     "name": "Боцвана",
     "svg": "static/data/bw.svg",
@@ -558,12 +552,6 @@
     "flag": "static/flags/hk.svg"
   },
   {
-    "code": "hm",
-    "name": "Херд и Мекдоналд Острови",
-    "svg": "static/data/hm.svg",
-    "flag": "static/flags/hm.svg"
-  },
-  {
     "code": "hn",
     "name": "Хондурас",
     "svg": "static/data/hn.svg",
@@ -814,12 +802,6 @@
     "name": "Црна Гора",
     "svg": "static/data/me.svg",
     "flag": "static/flags/me.svg"
-  },
-  {
-    "code": "mf",
-    "name": "Свети Мартин",
-    "svg": "static/data/mf.svg",
-    "flag": "static/flags/mf.svg"
   },
   {
     "code": "mg",
@@ -1156,12 +1138,6 @@
     "name": "Словенија",
     "svg": "static/data/si.svg",
     "flag": "static/flags/si.svg"
-  },
-  {
-    "code": "sj",
-    "name": "Свалбард и Јан Мајен",
-    "svg": "static/data/sj.svg",
-    "flag": "static/flags/sj.svg"
   },
   {
     "code": "sk",

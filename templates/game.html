@@ -143,7 +143,7 @@
     const DATA_PATH = "{% static 'countries_data.json' %}";
     const SVG_PREFIX = "{% static 'data/' %}";
     const FLAG_PREFIX = "{% static 'flags/' %}";
-    const IMAGE_PREFIX = MODE === "flag" ? "{{ '/static/flags/' }}" : "{{ '/static/data/' }}";
+    const IMAGE_PREFIX = MODE === "flag" ? "{% static 'flags/' %}" : "{% static 'data/' %}";
 
 
   </script>
