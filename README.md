@@ -1,1 +1,1 @@
-Project deployed on https://geographyminigames.onrender.com
+Project deployed at https://geographyminigames.onrender.com
