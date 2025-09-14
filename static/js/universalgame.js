@@ -1,11 +1,32 @@
 let countries = [];
 let currentCountry = null;
 let score = 0;
-let highScore = localStorage.getItem("highScore") || 0;
+
+// --- robust localStorage helpers (work even if storage is blocked) ---
+const LS_KEY = "gwc_highScore";
+function lsGet(key, fallback = "0") {
+  try {
+    const v = window.localStorage.getItem(key);
+    return v !== null ? v : fallback;
+  } catch { return fallback; }
+}
+function lsSet(key, value) {
+  try { window.localStorage.setItem(key, value); } catch {}
+}
+
+let highScore = parseInt(lsGet(LS_KEY, "0"), 10) || 0;
+
+function updateHUD() {
+  const s = document.getElementById("score-val");
+  const h = document.getElementById("hs-val");
+  if (s) s.textContent = String(score);
+  if (h) h.textContent = String(highScore);
+}
 
 async function loadCountries() {
-  const res = await fetch(DATA_PATH);
+  const res = await fetch(DATA_PATH, { cache: "no-store" });
   countries = await res.json();
+  updateHUD();
   loadRandomCountry();
 }
 
@@ -37,7 +58,6 @@ function loadRandomCountry() {
     `;
   }
 
-
   const choicesDiv = document.getElementById('choices');
   choicesDiv.innerHTML = '';
   allChoices.forEach(choice => {
@@ -49,14 +69,13 @@ function loadRandomCountry() {
   });
 }
 
-
 function checkAnswer(selected) {
   const result = document.getElementById('result');
   if (selected.code === currentCountry.code) {
     score++;
+    updateHUD();
     result.innerText = `✅ Точно! Сегашен скор: ${score}`;
     result.className = 'show correct';
-
 
     setTimeout(() => {
       result.innerText = '';
@@ -66,19 +85,22 @@ function checkAnswer(selected) {
     result.innerText = `❌ Неточно! Тоа беше ${currentCountry.name}.\nФинален скор: ${score}`;
     result.className = 'show incorrect';
 
-
+    // >>> FIX: update in-memory HS AND saved HS
     if (score > highScore) {
-      localStorage.setItem("highScore", score);
+      highScore = score;
+      lsSet(LS_KEY, String(highScore));
       result.innerText += `\n🥇 Нов највисок скор!`;
     } else {
       result.innerText += `\n🏆 Највисок скор: ${highScore}`;
     }
+    updateHUD();
 
     const retryBtn = document.createElement('button');
     retryBtn.className = 'btn btn-warning btn-lg retry-btn';
     retryBtn.innerText = 'Пробај пак';
     retryBtn.onclick = () => {
       score = 0;
+      updateHUD();
       result.innerText = '';
       loadRandomCountry();
     };
