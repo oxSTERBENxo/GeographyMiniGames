@@ -16,17 +16,9 @@ function lsSet(key, value) {
 
 let highScore = parseInt(lsGet(LS_KEY, "0"), 10) || 0;
 
-function updateHUD() {
-  const s = document.getElementById("score-val");
-  const h = document.getElementById("hs-val");
-  if (s) s.textContent = String(score);
-  if (h) h.textContent = String(highScore);
-}
-
 async function loadCountries() {
   const res = await fetch(DATA_PATH, { cache: "no-store" });
   countries = await res.json();
-  updateHUD();
   loadRandomCountry();
 }
 
@@ -73,7 +65,6 @@ function checkAnswer(selected) {
   const result = document.getElementById('result');
   if (selected.code === currentCountry.code) {
     score++;
-    updateHUD();
     result.innerText = `✅ Точно! Сегашен скор: ${score}`;
     result.className = 'show correct';
 
@@ -93,14 +84,12 @@ function checkAnswer(selected) {
     } else {
       result.innerText += `\n🏆 Највисок скор: ${highScore}`;
     }
-    updateHUD();
-
+    
     const retryBtn = document.createElement('button');
     retryBtn.className = 'btn btn-warning btn-lg retry-btn';
     retryBtn.innerText = 'Пробај пак';
     retryBtn.onclick = () => {
       score = 0;
-      updateHUD();
       result.innerText = '';
       loadRandomCountry();
     };
